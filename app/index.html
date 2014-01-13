@@ -20,6 +20,27 @@
         <script src="bower_components/modernizr/modernizr.js"></script>
         <script src="scripts/d3.v3.min.js"></script>
 
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+            google.load("visualization", "1", {packages:["corechart"]});
+            google.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ['Booking date',    'Misc', 'Groceries', 'Rent'],
+                    ['09/2013',         52.63,       200.00,     600.00],
+                    ['10/2013',         12.03,       150.00,     600.00],
+                    ['11/2013',         20.00,       120.00,     600.00]
+                ]);
+
+                var options = {
+                    title: 'Personal Finance',
+                    hAxis: {title: 'Year', titleTextStyle: {color: 'red'}}
+                };
+
+                var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+            }
+        </script>
     </head>
     <body>
         <!--[if lt IE 10]>
@@ -45,6 +66,7 @@
 
             <div class="row marketing">
                 <div class="col-lg-6">
+                    <div id="chart_div" style="width: 700px; height: 600px;"></div>
                     <div id="viz"></div>
                     <h4>HTML5 Boilerplate</h4>
                     <p>HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.</p>
